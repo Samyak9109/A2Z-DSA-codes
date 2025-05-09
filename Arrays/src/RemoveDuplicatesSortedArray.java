@@ -60,6 +60,7 @@ public class RemoveDuplicatesSortedArray {
         if (nums.length == 0) return 0;
 
         int i = 0;
+
         for (int j = 1; j < nums.length; j++) {
             if (nums[j] != nums[i]) {
                 i++;
@@ -80,7 +81,6 @@ public class RemoveDuplicatesSortedArray {
     // Main method to test all three approaches
     public static void main(String[] args) {
         int[] original = {1, 1, 2, 2, 3, 4, 4, 5};
-
         // Test Brute Force
         int[] arr1 = original.clone();
         int newLength1 = removeDuplicatesBrute(arr1);
