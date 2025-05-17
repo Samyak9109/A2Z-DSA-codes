@@ -1,22 +1,29 @@
 public class LargestElement {
 
-    // Method to return the largest element in the array
+    // ----------------------------------------------------------
+    // Method: Find the largest element in the array
+    // Time Complexity: O(n)
+    // - We scan through the array once to find the largest element.
+    // Space Complexity: O(1)
+    // - Only a few variables are used regardless of input size.
+    // ----------------------------------------------------------
     static int getLargest(int[] arr) {
-        //Time Complexity : O(n)
-        System.out.println("Time Complexity of getLargest(): O(n)");
         int largest = arr[0];
 
-        for (int var : arr) if (var > largest) largest = var;
+        for (int var : arr) {
+            if (var > largest) largest = var;
+        }
 
         return largest;
     }
 
+    // ----------------------------------------------------------
+    // Main method to test getLargest
+    // ----------------------------------------------------------
     public static void main(String[] args) {
-        // Declare and initialize an array of integers
         int[] numbers = {12, 45, 2, 67, 34};
 
-        // Call getLargest method and print the result
         System.out.println("Largest element: " + getLargest(numbers));
-
+        System.out.println("Time Complexity of getLargest(): O(n)");
     }
 }

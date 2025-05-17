@@ -4,6 +4,8 @@ import java.util.Collections;
 public class BasicMaths {
 
     // Count the number of digits in a number
+    // Time Complexity: O(log n) because dividing by 10 reduces digits count
+    // Space Complexity: O(1) constant space
     public static int countDigits(int n) {
         int count = 0;
         while (n > 0) {
@@ -14,6 +16,8 @@ public class BasicMaths {
     }
 
     // Reverse the digits of a number
+    // Time Complexity: O(log n) where n is the number of digits (since we process each digit once)
+    // Space Complexity: O(1)
     public static int reverseDigits(int x) {
         int num = 0;
         while (x != 0) {
@@ -25,6 +29,8 @@ public class BasicMaths {
     }
 
     // Check if a number is a palindrome (Method 1 - complete reverse)
+    // Time Complexity: O(log n) - reversing digits once
+    // Space Complexity: O(1)
     public static boolean isPalindrome(int n) {
         int num = 0;
         int oriNum = n; // Store original number
@@ -47,6 +53,8 @@ public class BasicMaths {
     }
 
     // Check if a number is a palindrome (Method 2 - optimized, reverse only half)
+    // Time Complexity: O(log n) - only half of the digits are processed
+    // Space Complexity: O(1)
     public static boolean isPalindromeMeth2(int n) {
         // Special case check
         if (n < 0 || (n % 10 == 0 && n != 0)) {
@@ -65,6 +73,8 @@ public class BasicMaths {
     }
 
     // Check if a 3-digit number is an Armstrong number (sum of cubes of digits = number)
+    // Time Complexity: O(log n) - iterates through each digit
+    // Space Complexity: O(1)
     public static void Armstrong(int n) {
         int num = 0;
         int oriNum = n;
@@ -83,6 +93,8 @@ public class BasicMaths {
     }
 
     // Brute-force method to print all divisors of a number
+    // Time Complexity: O(n)
+    // Space Complexity: O(1)
     public static void printDivisors(int n) {
         for (int i = 1; i <= n; i++) {
             if (n % i == 0) { // If divisible
@@ -92,6 +104,9 @@ public class BasicMaths {
     }
 
     // Optimized method to print all divisors in sorted order using square root
+    // Time Complexity: O(√n log √n)
+    // Explanation: O(√n) to find divisors, and O(k log k) for sorting k divisors (k ≤ 2√n)
+    // Space Complexity: O(√n) to store divisors in the ArrayList
     public static void printDivisors2(int n) {
         ArrayList<Integer> Divisor = new ArrayList<>();
         for (int i = 1; i <= Math.sqrt(n); i++) {
@@ -110,6 +125,8 @@ public class BasicMaths {
     }
 
     // Check if a number is prime using sqrt(n) optimization
+    // Time Complexity: O(√n)
+    // Space Complexity: O(1)
     public static void checkForPrime(int n) {
         if (n <= 1) {
             System.out.println("Number is NOT a Prime Number");
@@ -137,6 +154,8 @@ public class BasicMaths {
     }
 
     // Find GCD (Greatest Common Divisor) using Euclidean algorithm
+    // Time Complexity: O(log(min(a, b))) - worst case complexity of Euclidean algorithm
+    // Space Complexity: O(log(min(a, b))) due to recursion stack depth
     public static int gcd(int a, int b) {
         if (b == 0) {
             return a; // Base case

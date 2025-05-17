@@ -1,10 +1,12 @@
 public class RemoveDuplicatesSortedArray {
 
-    /**
-     * 1. Brute Force Approach
-     * Time Complexity: O(n^2)
-     * Space Complexity: O(1)
-     */
+    // ----------------------------------------------------------
+    // Method 1: Brute Force Approach
+    // Time Complexity: O(n^2)
+    // - Nested loops to compare and shift elements for duplicates.
+    // Space Complexity: O(1)
+    // - No extra space used, only a few variables.
+    // ----------------------------------------------------------
     public static int removeDuplicatesBrute(int[] nums) {
         int size = nums.length;
         if (size == 0) return 0;
@@ -25,11 +27,13 @@ public class RemoveDuplicatesSortedArray {
         return size;
     }
 
-    /**
-     * 2. Better Approach (Using Extra Space)
-     * Time Complexity: O(n)
-     * Space Complexity: O(n)
-     */
+    // ----------------------------------------------------------
+    // Method 2: Better Approach (Using Extra Space)
+    // Time Complexity: O(n)
+    // - Single pass through the array to build a temp array of unique elements.
+    // Space Complexity: O(n)
+    // - Uses an extra temporary array to store unique elements.
+    // ----------------------------------------------------------
     public static int removeDuplicatesBetter(int[] nums) {
         if (nums.length == 0) return 0;
 
@@ -51,11 +55,13 @@ public class RemoveDuplicatesSortedArray {
         return j;
     }
 
-    /**
-     * 3. Optimal Approach (Two-Pointer Method)
-     * Time Complexity: O(n)
-     * Space Complexity: O(1)
-     */
+    // ----------------------------------------------------------
+    // Method 3: Optimal Approach (Two-Pointer Method)
+    // Time Complexity: O(n)
+    // - Single pass using two pointers to overwrite duplicates in-place.
+    // Space Complexity: O(1)
+    // - No extra space; modifications done in original array.
+    // ----------------------------------------------------------
     public static int removeDuplicatesOptimal(int[] nums) {
         if (nums.length == 0) return 0;
 
@@ -70,7 +76,11 @@ public class RemoveDuplicatesSortedArray {
         return i + 1;
     }
 
-    // Helper method to print array
+    // ----------------------------------------------------------
+    // Helper Method: Print elements of array up to given length
+    // Time Complexity: O(n)
+    // Space Complexity: O(1)
+    // ----------------------------------------------------------
     public static void printArray(int[] arr, int length) {
         for (int i = 0; i < length; i++) {
             System.out.print(arr[i] + " ");
@@ -78,9 +88,12 @@ public class RemoveDuplicatesSortedArray {
         System.out.println();
     }
 
-    // Main method to test all three approaches
+    // ----------------------------------------------------------
+    // Main Method: Test all three approaches
+    // ----------------------------------------------------------
     public static void main(String[] args) {
         int[] original = {1, 1, 2, 2, 3, 4, 4, 5};
+
         // Test Brute Force
         int[] arr1 = original.clone();
         int newLength1 = removeDuplicatesBrute(arr1);

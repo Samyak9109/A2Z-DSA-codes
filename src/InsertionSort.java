@@ -1,6 +1,14 @@
 public class InsertionSort {
 
     // First implementation of insertion sort
+    /*
+     * Time Complexity:
+     * Best Case: O(n) — when the array is already sorted, the inner while loop runs minimal times.
+     * Worst Case: O(n^2) — when the array is reverse sorted, maximum shifts/swaps happen.
+     * Average Case: O(n^2) — average number of shifts/swaps.
+     *
+     * Space Complexity: O(1) — in-place sorting, uses constant extra space.
+     */
     static void insertionSort(int[] arr) {
         int n = arr.length;
 
@@ -21,6 +29,14 @@ public class InsertionSort {
     }
 
     // Alternative (and more common) implementation using a 'key'
+    /*
+     * Time Complexity:
+     * Best Case: O(n) — when the array is already sorted, minimal shifts.
+     * Worst Case: O(n^2) — when the array is reverse sorted.
+     * Average Case: O(n^2)
+     *
+     * Space Complexity: O(1) — in-place sorting.
+     */
     static void insertionSortAlternative(int[] arr) {
         int n = arr.length;
 

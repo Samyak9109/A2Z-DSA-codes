@@ -1,180 +1,202 @@
 public class BasicRecursion {
 
-    // Function to print a message 'n' times
-    public static void printN(int n , String message){
-        // Base case: If n is less than or equal to 0, stop the recursion
+    /*
+     * Time Complexity: O(n)
+     * Space Complexity: O(n) - due to recursion call stack of depth n
+     * Reason: The function prints the message n times, making one recursive call per print.
+     */
+    public static void printN(int n, String message) {
         if (n <= 0) return;
-        // Print the message
         System.out.println(message);
-        // Recursive call with n-1
-        printN(n-1, message);
+        printN(n - 1, message);
     }
 
-    // Function to print numbers from 1 to 'n'
-    public static void print1toN(int n, int i){
-        // Base case: If n is less than or equal to 0, stop the recursion
-        if(n<= 0 ) return;
-        // Print the current number (i)
+    /*
+     * Time Complexity: O(n)
+     * Space Complexity: O(n) - recursion depth n
+     * Reason: Prints numbers from i to i + n - 1, total n prints and recursive calls.
+     */
+    public static void print1toN(int n, int i) {
+        if (n <= 0) return;
         System.out.println(i);
-        // Recursive call with n-1 and i+1
-        print1toN(n-1 , i+1);
+        print1toN(n - 1, i + 1);
     }
 
-    // Function to print numbers from 'n' to 1
-    public static void printNto1(int n){
-        // Base case: If n is less than or equal to 0, stop the recursion
-        if(n<= 0 ) return;
-        // Print the current number (n)
+    /*
+     * Time Complexity: O(n)
+     * Space Complexity: O(n) - recursion depth n
+     * Reason: Prints numbers from n down to 1, one recursive call per print.
+     */
+    public static void printNto1(int n) {
+        if (n <= 0) return;
         System.out.println(n);
-        // Recursive call with n-1
-        printNto1(n-1 );
+        printNto1(n - 1);
     }
 
-    // Function to print numbers from 1 to 'n' using backtracking
-    public static void printBacktrack(int n){
-        // Base case: If n is 0, stop the recursion
+    /*
+     * Time Complexity: O(n)
+     * Space Complexity: O(n) - recursion call stack depth n
+     * Reason: Goes down to base case n=0, then prints on backtracking, total n prints.
+     */
+    public static void printBacktrack(int n) {
         if (n == 0) return;
-        // Recursive call first to reach the deepest level
-        printBacktrack(n-1);
-        // Print the number while backtracking
+        printBacktrack(n - 1);
         System.out.println(n);
     }
 
-    // Function to print numbers from 1 to 'n' using backtracking and printing while backtracking
+    /*
+     * Time Complexity: O(n)
+     * Space Complexity: O(n) - recursion depth n
+     * Reason: Similar to printBacktrack, but uses two parameters to print while backtracking.
+     */
     public static void printBacktrackNto1(int n, int current) {
-        // Base case: If current is greater than 'n', stop the recursion
         if (current > n) return;
-        // First, go to the deepest level (recursive call)
         printBacktrackNto1(n, current + 1);
-        // Then print while backtracking
         System.out.println(current);
     }
 
-    // Function to calculate the sum of numbers from 1 to 'n' using recursion
+    /*
+     * Time Complexity: O(n)
+     * Space Complexity: O(n) - recursion depth n
+     * Reason: Sums numbers from n down to 0 recursively.
+     */
     public static int sumOfN(int n) {
-        // Base case: sum of 0 is 0
         if (n == 0) return 0;
-        // Recursive case: sum of 'n' + sum of previous numbers
         return n + sumOfN(n - 1);
     }
 
-    // Function to calculate factorial of 'n' using recursion
+    /*
+     * Time Complexity: O(n)
+     * Space Complexity: O(n) - recursion depth n
+     * Reason: Calculates factorial by recursive multiplication from n down to 1.
+     */
     public static int factorial(int n) {
-        // Base case: factorial of 0 or 1 is 1
         if (n == 0 || n == 1) return 1;
-        // Recursive case: n * factorial of (n-1)
         return n * factorial(n - 1);
     }
 
-    // Function to reverse an array using recursion (Method 1)
-    public static void reverseAnArrayMeth1(int [] arr, int start , int end){
-        // Base case: If start >= end, stop the recursion
+    /*
+     * Time Complexity: O(n)
+     * Space Complexity: O(n) - recursion depth approx n/2 (still O(n))
+     * Reason: Swaps elements from start to end, each call moves indices inward by 1.
+     */
+    public static void reverseAnArrayMeth1(int[] arr, int start, int end) {
         if (start >= end) return;
-
-        // Swap elements at start and end indices
         int temp = arr[start];
         arr[start] = arr[end];
         arr[end] = temp;
-
-        // Recursive call with next indices (start+1 and end-1)
-        reverseAnArrayMeth1(arr, start+1, end-1);
+        reverseAnArrayMeth1(arr, start + 1, end - 1);
     }
 
-    // Function to reverse an array using backtracking (Method 2)
-    public static void reveseAnArrayBacktraking(int []arr, int i){
+    /*
+     * Time Complexity: O(n)
+     * Space Complexity: O(n) - recursion depth approx n/2 (still O(n))
+     * Reason: Swaps symmetric elements in the array using backtracking with index i.
+     */
+    public static void reveseAnArrayBacktraking(int[] arr, int i) {
         int n = arr.length;
-        // Base case: If i >= n/2, stop the recursion
-        if (i >= n/2) return;
-
-        // Swap elements at index 'i' and corresponding index from the end (n-i-1)
+        if (i >= n / 2) return;
         int temp = arr[i];
-        arr[i] = arr[n-i-1];
-        arr[n-i-1] = temp;
-
-        // Recursive call with the next index
-        reveseAnArrayBacktraking(arr, i+1);
+        arr[i] = arr[n - i - 1];
+        arr[n - i - 1] = temp;
+        reveseAnArrayBacktraking(arr, i + 1);
     }
 
-    // Function to check if a string is a palindrome using recursion (Method 1)
+    /*
+     * Time Complexity: O(n)
+     * Space Complexity: O(n) - recursion depth approx n/2
+     * Reason: Checks characters at start and end indices, moving inward until middle.
+     */
     public static boolean checkPalindrome(String str, int start, int end) {
-        // Base case: If start >= end, the string is a palindrome
         if (start >= end) return true;
-        // If characters at start and end don't match, it's not a palindrome
         if (str.charAt(start) != str.charAt(end)) return false;
-        // Recursive case: check for the next pair of characters
-        return checkPalindrome(str, start+1, end-1);
+        return checkPalindrome(str, start + 1, end - 1);
     }
 
-    // Function to check if a string is a palindrome using recursion (Method 2)
-    public static boolean isPalindromeMeth2(String str, int i){
-        // Base case: If i has reached or passed the middle of the string, it's a palindrome
-        if (i >= str.length()/2) return true;
-        // If characters at i and the corresponding index from the end don't match, it's not a palindrome
-        if (str.charAt(i) != str.charAt(str.length()-i-1)) return false;
-        // Recursive case: check for the next pair of characters
-        return isPalindromeMeth2(str, i+1);
+    /*
+     * Time Complexity: O(n)
+     * Space Complexity: O(n) - recursion depth approx n/2
+     * Reason: Similar to checkPalindrome but uses single index i.
+     */
+    public static boolean isPalindromeMeth2(String str, int i) {
+        if (i >= str.length() / 2) return true;
+        if (str.charAt(i) != str.charAt(str.length() - i - 1)) return false;
+        return isPalindromeMeth2(str, i + 1);
     }
 
-    // Function to calculate the nth Fibonacci number using recursion
-    public static int fibonacchi(int n){
-        // Base case: Fibonacci of 0 is 0, Fibonacci of 1 is 1
+    /*
+     * Time Complexity: O(2^n) - exponential
+     * Space Complexity: O(n) - recursion depth n
+     * Reason: Naive Fibonacci calculation calls fib(n-1) and fib(n-2) recursively without memoization, leading to exponential calls.
+     */
+    public static int fibonacchi(int n) {
         if (n <= 1) return n;
-        // Recursive case: sum of the previous two Fibonacci numbers
-        return fibonacchi(n-1) + fibonacchi(n-2);
+        return fibonacchi(n - 1) + fibonacchi(n - 2);
     }
 
-    // Function to print the Fibonacci sequence up to the nth term
-    public static void printFibonacchi(int n){
-        // Loop through the first 'n' terms and print the Fibonacci number
+    /*
+     * Time Complexity: O(n * 2^n)
+     * Space Complexity: O(n)
+     * Reason: Calls fibonacchi(i) for i=0 to n-1. Each fibonacchi call is exponential O(2^i). Summed up, this is O(n*2^n).
+     */
+    public static void printFibonacchi(int n) {
         for (int i = 0; i < n; i++) {
             System.out.print(fibonacchi(i) + " ");
         }
+        System.out.println();
     }
 
+    // Main execution method demonstrating each recursive method with example inputs
     public static void main(String[] args) {
 
-        // Test cases for different functions (Uncomment to test each one)
+        System.out.println("printN(3, \"Hello\"):");
+        printN(3, "Hello");
 
-        // Function to print "hello" 5 times
-        // printN(5 , "hello");
+        System.out.println("\nprint1toN(5, 1):");
+        print1toN(5, 1);
 
-        // Function to print numbers from 1 to 6
-        // print1toN(6 , 1);
+        System.out.println("\nprintNto1(5):");
+        printNto1(5);
 
-        // Function to print numbers from 5 to 1
-        // printNto1(5);
+        System.out.println("\nprintBacktrack(5):");
+        printBacktrack(5);
 
-        // Function to print numbers from 1 to 10 using backtracking
-        // printBacktrack(10);
+        System.out.println("\nprintBacktrackNto1(5, 1):");
+        printBacktrackNto1(5, 1);
 
-        // Function to print numbers from 1 to 10 using backtracking while printing during backtracking
-        // printBacktrackNto1(10 , 1);
+        System.out.println("\nsumOfN(5):");
+        System.out.println(sumOfN(5));  // Output: 15
 
-        // Function to calculate the sum of numbers from 1 to 5
-        // System.out.println(sumOfN(5));
+        System.out.println("\nfactorial(5):");
+        System.out.println(factorial(5));  // Output: 120
 
-        // Function to calculate the factorial of 5
-        // System.out.println(factorial(5));
+        int[] arr1 = {1, 2, 3, 4, 5};
+        System.out.println("\nreverseAnArrayMeth1 before reverse:");
+        for (int v : arr1) System.out.print(v + " ");
+        System.out.println();
+        reverseAnArrayMeth1(arr1, 0, arr1.length - 1);
+        System.out.println("reverseAnArrayMeth1 after reverse:");
+        for (int v : arr1) System.out.print(v + " ");
+        System.out.println();
 
-        // Reverse the array using Method 1 (Recursive)
-        // int [] arr = {1, 3, 4, 5, 6};
-        // reverseAnArrayMeth1(arr , 0 , arr.length-1);
-        // for (int a : arr) System.out.print(a);
+        int[] arr2 = {10, 20, 30, 40, 50};
+        System.out.println("\nreveseAnArrayBacktraking before reverse:");
+        for (int v : arr2) System.out.print(v + " ");
+        System.out.println();
+        reveseAnArrayBacktraking(arr2, 0);
+        System.out.println("reveseAnArrayBacktraking after reverse:");
+        for (int v : arr2) System.out.print(v + " ");
+        System.out.println();
 
-        // Reverse the array using Method 2 (Backtracking)
-        // reveseAnArrayBacktraking(arr, 0);
-        // for (int b : arr) System.out.print(b);
+        String palindromeTest1 = "racecar";
+        System.out.println("\ncheckPalindrome(\"" + palindromeTest1 + "\"):");
+        System.out.println(checkPalindrome(palindromeTest1, 0, palindromeTest1.length() - 1)); // true
 
-        // Check if the string "racecar" is a palindrome
-        // String s = "racecar";
-        // if (checkPalindrome(s, 0 , s.length()-1)) System.out.println("True");
-        // else System.out.println("False");
+        String palindromeTest2 = "hello";
+        System.out.println("\nisPalindromeMeth2(\"" + palindromeTest2 + "\"):");
+        System.out.println(isPalindromeMeth2(palindromeTest2, 0)); // false
 
-        // Check if the string "racecar" is a palindrome using Method 2
-        // if (isPalindromeMeth2(s, 0 )) System.out.println("True");
-        // else System.out.println("False");
-
-        // Print Fibonacci sequence up to the 10th term
+        System.out.println("\nprintFibonacchi(10):");
         printFibonacchi(10);
     }
 }
