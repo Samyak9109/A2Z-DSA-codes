@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.Map;
 
+//Works for both negatives and positives
+
 public class LongestSubarraySumK {
 
     // Time Complexity: O(N^3)
@@ -13,14 +15,16 @@ public class LongestSubarraySumK {
         // Try all possible subarrays
         for (int i = 0; i < n; i++) {
             for (int j = i; j < n; j++) {
+
                 int sum = 0;
                 for (int l = i; l <= j; l++) sum += arr[l]; // Calculate subarray sum
+
                 if (sum == k) len = Math.max(len, j - i + 1); // Update max length
             }
         }
-
         return len;
     }
+
 
     // Time Complexity: O(N^2)
     // Space Complexity: O(1)
@@ -37,7 +41,6 @@ public class LongestSubarraySumK {
                 if (sum == k) len = Math.max(len, j - i + 1); // Check and update max length
             }
         }
-
         return len;
     }
 
