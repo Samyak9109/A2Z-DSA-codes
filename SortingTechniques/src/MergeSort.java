@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.*;
 
 // Helper class containing merge sort methods
-class Solution {
+class Merge {
 
     // Function to merge two sorted halves of the array
     public static void merge(int[] arr, int low, int mid, int high) {
@@ -76,7 +76,7 @@ public class MergeSort {
         System.out.println();
 
         // Call merge sort to sort the array
-        Solution.mergeSort(arr, 0, n - 1);
+        Merge.mergeSort(arr, 0, n - 1);
 
         // Print array after sorting
         System.out.println("After sorting array:");
