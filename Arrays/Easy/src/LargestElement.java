@@ -3,15 +3,16 @@ public class LargestElement {
     // ----------------------------------------------------------
     // Method: Find the largest element in the array
     // Time Complexity: O(n)
-    // - We scan through the array once to find the largest element.
+    // - One pass through the array to find the largest element.
+    //
     // Space Complexity: O(1)
-    // - Only a few variables are used regardless of input size.
+    // - Only a few variables used, constant space.
     // ----------------------------------------------------------
     static int getLargest(int[] arr) {
-        int largest = arr[0];
+        int largest = arr[0];  // Initialize largest as first element
 
         for (int var : arr) {
-            if (var > largest) largest = var;
+            if (var > largest) largest = var;  // Update largest if current is bigger
         }
 
         return largest;

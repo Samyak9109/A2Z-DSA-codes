@@ -3,9 +3,10 @@ public class GetSmallest {
     // ----------------------------------------------------------
     // Method: Find the smallest non-negative element in the array
     // Time Complexity: O(n)
-    // - We traverse the array once to find the smallest non-negative value.
+    // - Single traversal of the array.
+    //
     // Space Complexity: O(1)
-    // - Only a few variables are used regardless of input size.
+    // - Uses constant extra space.
     // ----------------------------------------------------------
     static int getSmallest(int[] arr) {
         int smallest = Integer.MAX_VALUE;

@@ -3,40 +3,41 @@ import java.util.*;
 public class FindTheUnion {
 
     // 1. Brute Force (Sorted arrays) - Using ArrayList contains check + sort
-    // Time: O((n+m)*k + (n+m)log(n+m)) where k is size of union due to contains()
-    // Space: O(n+m) for union list
+    // Time Complexity: O((n + m) * k + (n + m) log (n + m)) where k is union size (due to contains())
+    // Space Complexity: O(n + m) for union list
     static ArrayList<Integer> unionSortedBrute(int[] arr1, int[] arr2, int n, int m) {
         ArrayList<Integer> union = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            if (!union.contains(arr1[i]))
+            if (!union.contains(arr1[i]))  // O(k) contains check
                 union.add(arr1[i]);
         }
         for (int i = 0; i < m; i++) {
-            if (!union.contains(arr2[i]))
+            if (!union.contains(arr2[i]))  // O(k) contains check
                 union.add(arr2[i]);
         }
-        Collections.sort(union);
+        Collections.sort(union);  // O((n+m) log (n+m))
         return union;
     }
 
     // 2. Better Approach (Sorted or Unsorted) - Using HashSet + sorting result
-    // Time: O(n + m + k log k), k = number of unique elements
-    // Space: O(n + m)
+    // Time Complexity: O(n + m + k log k), k = unique elements count
+    // Space Complexity: O(n + m)
     static ArrayList<Integer> unionUsingHashSet(int[] arr1, int[] arr2, int n, int m) {
         HashSet<Integer> set = new HashSet<>();
-        for (int val : arr1) set.add(val);
-        for (int val : arr2) set.add(val);
+        for (int val : arr1) set.add(val);  // O(n)
+        for (int val : arr2) set.add(val);  // O(m)
         ArrayList<Integer> union = new ArrayList<>(set);
-        Collections.sort(union);
+        Collections.sort(union);  // O(k log k)
         return union;
     }
 
     // 3. Optimal for Sorted Arrays - Two pointers without extra sorting
-    // Time: O(n + m)
-    // Space: O(n + m)
+    // Time Complexity: O(n + m) single pass through both arrays
+    // Space Complexity: O(n + m) worst case all unique elements
     static ArrayList<Integer> unionSortedOptimal(int[] arr1, int[] arr2, int n, int m) {
         ArrayList<Integer> union = new ArrayList<>();
         int i = 0, j = 0;
+
         while (i < n && j < m) {
             // Skip duplicates in arr1
             if (i > 0 && arr1[i] == arr1[i - 1]) {
@@ -48,23 +49,24 @@ public class FindTheUnion {
                 j++;
                 continue;
             }
+
             if (arr1[i] < arr2[j]) {
                 union.add(arr1[i++]);
             } else if (arr2[j] < arr1[i]) {
                 union.add(arr2[j++]);
             } else {
-                union.add(arr1[i]);
+                union.add(arr1[i]);  // equal elements, add once
                 i++;
                 j++;
             }
         }
-        // Add remaining from arr1
+        // Add remaining unique elements from arr1
         while (i < n) {
             if (i == 0 || arr1[i] != arr1[i - 1])
                 union.add(arr1[i]);
             i++;
         }
-        // Add remaining from arr2
+        // Add remaining unique elements from arr2
         while (j < m) {
             if (j == 0 || arr2[j] != arr2[j - 1])
                 union.add(arr2[j]);
@@ -74,8 +76,8 @@ public class FindTheUnion {
     }
 
     // 4. Brute Force for Unsorted arrays - Using ArrayList contains check + sorting
-    // Time: O((n+m)*k + (n+m)log(n+m)) (similar to sorted brute)
-    // Space: O(n+m)
+    // Time Complexity: O((n + m) * k + (n + m) log (n + m)) (similar to sorted brute)
+    // Space Complexity: O(n + m)
     static ArrayList<Integer> unionUnsortedBrute(int[] arr1, int[] arr2, int n, int m) {
         ArrayList<Integer> union = new ArrayList<>();
         for (int i = 0; i < n; i++) {
@@ -90,9 +92,9 @@ public class FindTheUnion {
         return union;
     }
 
-    // 5. Optimal for Unsorted arrays - Using HashSet (same as better above, no sorting needed if order irrelevant)
-    // Time: O(n + m)
-    // Space: O(n + m)
+    // 5. Optimal for Unsorted arrays - Using HashSet (same as better above, no sorting if order irrelevant)
+    // Time Complexity: O(n + m)
+    // Space Complexity: O(n + m)
     static ArrayList<Integer> unionUnsortedOptimal(int[] arr1, int[] arr2, int n, int m) {
         HashSet<Integer> set = new HashSet<>();
         for (int val : arr1) set.add(val);
@@ -100,7 +102,7 @@ public class FindTheUnion {
         return new ArrayList<>(set);
     }
 
-    // Main for testing
+    // Main method for testing
     public static void main(String[] args) {
         int[] sorted1 = {1, 2, 2, 3, 4, 5};
         int[] sorted2 = {2, 3, 5, 6, 7};

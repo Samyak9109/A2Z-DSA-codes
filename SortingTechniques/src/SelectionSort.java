@@ -1,5 +1,19 @@
 public class SelectionSort {
 
+    /**
+     * Performs selection sort on the array.
+     *
+     * Time Complexity:
+     * - Best Case: O(n^2) — selection sort always scans the entire unsorted part to find the min element.
+     * - Worst Case: O(n^2) — same as best, no optimization for already sorted arrays.
+     * - Average Case: O(n^2)
+     *
+     * Space Complexity:
+     * - O(1) — sorts in-place, no additional data structures used.
+     *
+     * @param arr the array to sort
+     * @param n length of the array
+     */
     // Function to perform selection sort on the array
     static void selectionSort(int[] arr, int n) {
         // Loop to move boundary of unsorted subarray

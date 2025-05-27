@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/Arrays/Hard/Hard.iml" filepath="$PROJECT_DIR$/Arrays/Hard/Hard.iml" />
       <module fileurl="file://$PROJECT_DIR$/Arrays/Medium/Medium.iml" filepath="$PROJECT_DIR$/Arrays/Medium/Medium.iml" />
       <module fileurl="file://$PROJECT_DIR$/SortingTechniques/SortingTechniques.iml" filepath="$PROJECT_DIR$/SortingTechniques/SortingTechniques.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Arrays/Medium/StockDP/StockDP.iml" filepath="$PROJECT_DIR$/Arrays/Medium/StockDP/StockDP.iml" />
       <module fileurl="file://$PROJECT_DIR$/untitled.iml" filepath="$PROJECT_DIR$/untitled.iml" />
     </modules>
   </component>

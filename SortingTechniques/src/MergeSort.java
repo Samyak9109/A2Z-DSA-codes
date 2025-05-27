@@ -1,21 +1,28 @@
 import java.util.ArrayList;
-import java.util.*;
+import java.util.Scanner;
 
 // Helper class containing merge sort methods
 class Merge {
 
-    // Function to merge two sorted halves of the array
+    /**
+     * Merge two sorted halves of the array [low..mid] and [mid+1..high]
+     *
+     * Time Complexity: O(high - low + 1)
+     * - We merge each element exactly once.
+     *
+     * Space Complexity: O(high - low + 1)
+     * - Temporary ArrayList used to store merged elements.
+     */
     public static void merge(int[] arr, int low, int mid, int high) {
-        // Temporary list to store merged elements
         ArrayList<Integer> temp = new ArrayList<>();
 
-        int left = low;       // Starting index of left half
-        int right = mid + 1;  // Starting index of right half
+        int left = low;
+        int right = mid + 1;
 
-        // Compare and merge elements from both halves
+        // Merge elements from both halves in sorted order
         while (left <= mid && right <= high) {
             if (arr[left] <= arr[right]) {
-                temp.add(arr[left]); // Add smaller element
+                temp.add(arr[left]);
                 left++;
             } else {
                 temp.add(arr[right]);
@@ -23,62 +30,66 @@ class Merge {
             }
         }
 
-        // Copy remaining elements from the left half (if any)
+        // Copy remaining elements from left half (if any)
         while (left <= mid) {
             temp.add(arr[left]);
             left++;
         }
 
-        // Copy remaining elements from the right half (if any)
+        // Copy remaining elements from right half (if any)
         while (right <= high) {
             temp.add(arr[right]);
             right++;
         }
 
-        // Copy the sorted elements back into the original array
+        // Copy merged elements back into original array
         for (int i = low; i <= high; i++) {
-            arr[i] = temp.get(i - low); // Adjust index for temp list
+            arr[i] = temp.get(i - low);
         }
     }
 
-    // Recursive merge sort function
+    /**
+     * Recursive merge sort function to sort arr[low..high]
+     *
+     * Time Complexity: O(n log n)
+     * - Array is divided into halves log n times.
+     * - Merging takes O(n) time at each level.
+     *
+     * Space Complexity: O(n)
+     * - Due to temporary ArrayList used during merging.
+     */
     public static void mergeSort(int[] arr, int low, int high) {
-        // Base case: if the subarray has one or no element, it's already sorted
         if (low >= high) return;
 
-        int mid = (low + high) / 2; // Find the middle index
+        int mid = (low + high) / 2;
 
-        // Recursively sort the left half
+        // Sort left half
         mergeSort(arr, low, mid);
 
-        // Recursively sort the right half
+        // Sort right half
         mergeSort(arr, mid + 1, high);
 
-        // Merge the sorted halves
+        // Merge sorted halves
         merge(arr, low, mid, high);
     }
 }
 
-// Main class containing the main method
+// Main class with driver code
 public class MergeSort {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // Define the input array
         int n = 7;
-        int arr[] = { 9, 4, 7, 6, 3, 1, 5 };
+        int[] arr = {9, 4, 7, 6, 3, 1, 5};
 
-        // Print array before sorting
         System.out.println("Before sorting array:");
         for (int i = 0; i < n; i++) {
             System.out.print(arr[i] + " ");
         }
         System.out.println();
 
-        // Call merge sort to sort the array
         Merge.mergeSort(arr, 0, n - 1);
 
-        // Print array after sorting
         System.out.println("After sorting array:");
         for (int i = 0; i < n; i++) {
             System.out.print(arr[i] + " ");

@@ -2,25 +2,31 @@ import java.util.*;
 
 public class QuickSort {
 
-    // Function to partition the list around a pivot
+    /**
+     * Partition the list around a pivot (chosen as the first element)
+     * so that elements <= pivot are on the left, and > pivot on the right.
+     *
+     * Time Complexity: O(high - low + 1)
+     * - Each element is compared at most once during partitioning.
+     *
+     * Space Complexity: O(1)
+     * - In-place partitioning with no extra arrays, only constant extra space.
+     */
     static int partition(List<Integer> arr, int low, int high) {
-        int pivot = arr.get(low); // Choose the first element as pivot
-        int i = low + 1;          // Start i from the next element
-        int j = high;             // Start j from the end
+        int pivot = arr.get(low); // Pivot is first element
+        int i = low + 1;          // Pointer starting just after pivot
+        int j = high;             // Pointer starting at the end
 
-        // Continue until pointers cross
         while (i <= j) {
-            // Move i to the right until an element > pivot is found
+            // Move i right while elements are <= pivot
             while (i <= high && arr.get(i) <= pivot) {
                 i++;
             }
-
-            // Move j to the left until an element <= pivot is found
+            // Move j left while elements are > pivot
             while (j >= low && arr.get(j) > pivot) {
                 j--;
             }
-
-            // If i is still to the left of j, swap them
+            // Swap elements at i and j if i < j
             if (i < j) {
                 int temp = arr.get(i);
                 arr.set(i, arr.get(j));
@@ -28,55 +34,63 @@ public class QuickSort {
             }
         }
 
-        // Place the pivot in its correct sorted position
+        // Place pivot in the correct sorted position by swapping with element at j
         int temp = arr.get(low);
         arr.set(low, arr.get(j));
         arr.set(j, temp);
 
-        // Return the index of the pivot
+        // Return pivot index after partitioning
         return j;
     }
 
-    // Recursive QuickSort function to sort subarrays
+    /**
+     * Recursive QuickSort function to sort subarrays between low and high.
+     *
+     * Time Complexity:
+     * - Best/Average Case: O(n log n)
+     *   * Each partition splits array roughly in half.
+     *   * log n levels of recursion with n work per level.
+     * - Worst Case: O(n^2)
+     *   * Occurs when pivot choices are poor (e.g., sorted array, pivot always smallest or largest).
+     *
+     * Space Complexity:
+     * - O(log n) average due to recursion stack.
+     * - O(n) worst case if recursion tree is skewed.
+     */
     static void quickSort(List<Integer> arr, int low, int high) {
         if (low < high) {
-            // Partition the list and get pivot index
             int pIndex = partition(arr, low, high);
 
-            // Recursively sort the left part
             quickSort(arr, low, pIndex - 1);
-
-            // Recursively sort the right part
             quickSort(arr, pIndex + 1, high);
         }
     }
 
-    // Entry point function to start QuickSort
+    /**
+     * Entry function to start QuickSort on the entire list.
+     * Returns the sorted list for convenience.
+     */
     public static List<Integer> quickSort(List<Integer> arr) {
         quickSort(arr, 0, arr.size() - 1);
-        return arr; // Return the sorted list
+        return arr;
     }
 
-    // Main function to test the sorting
+    // Main method for testing the QuickSort
     public static void main(String[] args) {
-        // Initialize an unsorted list
         List<Integer> arr = new ArrayList<>(Arrays.asList(4, 6, 2, 5, 7, 9, 1, 3));
         int n = arr.size();
 
-        // Print the list before sorting
         System.out.println("Before Using QuickSort:");
         for (int i = 0; i < n; i++) {
             System.out.print(arr.get(i) + " ");
         }
 
-        // Sort the list using QuickSort
         quickSort(arr);
 
-        // Print the list after sorting
         System.out.println("\nAfter Using QuickSort:");
         for (int i = 0; i < n; i++) {
             System.out.print(arr.get(i) + " ");
         }
-        System.out.println(); // Move to new line after output
+        System.out.println();
     }
 }

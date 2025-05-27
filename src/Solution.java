@@ -1,5 +1,5 @@
 public class Solution {
-    static void sort012(int [] nums) {
+    static void solve(int [] nums) {
         int low = 0, mid = 0, high = nums.length - 1;
 
         // Loop until mid crosses high

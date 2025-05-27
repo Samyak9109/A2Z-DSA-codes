@@ -1,30 +1,34 @@
 public class MissingNumberInArray {
 
     // 🔴 Brute Force Method
-    // Time: O(n^2), Space: O(1)
-    // Reason: For each number 0 to n, scan the whole array
+    // Time Complexity: O(n^2)
+    // - For each number from 0 to n, scan entire array to check presence.
+    // Space Complexity: O(1)
     static int missingNumberBrute(int[] arr) {
         for (int i = 0; i <= arr.length; i++) {
             boolean found = false;
-            for (int j = 0; j < arr.length; j++) {
-                if (arr[j] == i) {
+            for (int num : arr) {
+                if (num == i) {
                     found = true;
                     break;
                 }
             }
             if (!found) return i;
         }
-        return -1; // should never reach here
+        return -1; // Should not reach here if input is valid
     }
 
     // 🟡 Better Method 1: Using Hashing
-    // Time: O(n), Space: O(n)
-    // Reason: One pass to mark, one pass to find missing
+    // Time Complexity: O(n)
+    // - One pass to mark presence, one pass to find missing number.
+    // Space Complexity: O(n)
     static int missingNumberHashing(int[] arr) {
         int n = arr.length;
-        boolean[] hash = new boolean[n + 1]; // range: 0 to n
+        boolean[] hash = new boolean[n + 1];
 
-        for (int num : arr) hash[num] = true;
+        for (int num : arr) {
+            hash[num] = true;
+        }
 
         for (int i = 0; i <= n; i++) {
             if (!hash[i]) return i;
@@ -33,21 +37,25 @@ public class MissingNumberInArray {
     }
 
     // 🟡 Better Method 2: Using Sum Formula
-    // Time: O(n), Space: O(1)
-    // Reason: Constant formula + one array scan
+    // Time Complexity: O(n)
+    // - Sum of 0 to n minus sum of array elements gives missing number.
+    // Space Complexity: O(1)
     static int missingNumberSum(int[] arr) {
         int n = arr.length;
         int expectedSum = n * (n + 1) / 2;
         int actualSum = 0;
 
-        for (int num : arr) actualSum += num;
+        for (int num : arr) {
+            actualSum += num;
+        }
 
         return expectedSum - actualSum;
     }
 
     // 🟢 Optimal Method: Using XOR
-    // Time: O(n), Space: O(1)
-    // Reason: XOR cancels out matching numbers
+    // Time Complexity: O(n)
+    // - XOR of full range with XOR of array cancels out all except missing number.
+    // Space Complexity: O(1)
     static int missingNumberXOR(int[] arr) {
         int n = arr.length;
         int xorArr = 0, xorFull = 0;
@@ -56,18 +64,18 @@ public class MissingNumberInArray {
             xorArr ^= arr[i];
             xorFull ^= i;
         }
-
-        xorFull ^= n; // complete the 0 to n range
+        xorFull ^= n; // Include n in XOR of full range
 
         return xorArr ^ xorFull;
     }
 
+    // Main method to test all approaches
     public static void main(String[] args) {
-        int[] arr = {0, 1, 2, 3, 4, 6, 7, 8, 9}; // Missing number is 6
+        int[] arr = {0, 1, 2, 3, 4, 6, 7, 8, 9}; // Missing 5
 
-        System.out.println("Using Brute Force method - Missing Number: " + missingNumberBrute(arr));
-        System.out.println("Using Hashing method     - Missing Number: " + missingNumberHashing(arr));
-        System.out.println("Using Sum Formula method - Missing Number: " + missingNumberSum(arr));
-        System.out.println("Using XOR method         - Missing Number: " + missingNumberXOR(arr));
+        System.out.println("Brute Force method: Missing Number = " + missingNumberBrute(arr));
+        System.out.println("Hashing method:     Missing Number = " + missingNumberHashing(arr));
+        System.out.println("Sum Formula method: Missing Number = " + missingNumberSum(arr));
+        System.out.println("XOR method:         Missing Number = " + missingNumberXOR(arr));
     }
 }

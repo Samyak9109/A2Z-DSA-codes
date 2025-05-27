@@ -3,9 +3,9 @@ public class RemoveDuplicatesSortedArray {
     // ----------------------------------------------------------
     // Method 1: Brute Force Approach
     // Time Complexity: O(n^2)
-    // - Nested loops to compare and shift elements for duplicates.
+    // - Nested loops to find and shift duplicates.
     // Space Complexity: O(1)
-    // - No extra space used, only a few variables.
+    // - No extra space used.
     // ----------------------------------------------------------
     public static int removeDuplicatesBrute(int[] nums) {
         int size = nums.length;
@@ -14,7 +14,7 @@ public class RemoveDuplicatesSortedArray {
         for (int i = 0; i < size - 1; i++) {
             for (int j = i + 1; j < size; ) {
                 if (nums[i] == nums[j]) {
-                    // Shift elements to the left
+                    // Shift elements left to remove duplicate
                     for (int k = j; k < size - 1; k++) {
                         nums[k] = nums[k + 1];
                     }
@@ -28,11 +28,11 @@ public class RemoveDuplicatesSortedArray {
     }
 
     // ----------------------------------------------------------
-    // Method 2: Better Approach (Using Extra Space)
+    // Method 2: Better Approach using Extra Space
     // Time Complexity: O(n)
-    // - Single pass through the array to build a temp array of unique elements.
+    // - Single pass to collect unique elements.
     // Space Complexity: O(n)
-    // - Uses an extra temporary array to store unique elements.
+    // - Uses temporary array.
     // ----------------------------------------------------------
     public static int removeDuplicatesBetter(int[] nums) {
         if (nums.length == 0) return 0;
@@ -56,16 +56,16 @@ public class RemoveDuplicatesSortedArray {
     }
 
     // ----------------------------------------------------------
-    // Method 3: Optimal Approach (Two-Pointer Method)
+    // Method 3: Optimal Two-Pointer Approach (In-place)
     // Time Complexity: O(n)
-    // - Single pass using two pointers to overwrite duplicates in-place.
+    // - Single traversal using two pointers.
     // Space Complexity: O(1)
-    // - No extra space; modifications done in original array.
+    // - No extra space.
     // ----------------------------------------------------------
     public static int removeDuplicatesOptimal(int[] nums) {
         if (nums.length == 0) return 0;
 
-        int i = 0;
+        int i = 0; // slow pointer
 
         for (int j = 1; j < nums.length; j++) {
             if (nums[j] != nums[i]) {
@@ -73,11 +73,11 @@ public class RemoveDuplicatesSortedArray {
                 nums[i] = nums[j];
             }
         }
-        return i + 1;
+        return i + 1; // new length
     }
 
     // ----------------------------------------------------------
-    // Helper Method: Print elements of array up to given length
+    // Helper method: Print array up to given length
     // Time Complexity: O(n)
     // Space Complexity: O(1)
     // ----------------------------------------------------------
@@ -89,7 +89,7 @@ public class RemoveDuplicatesSortedArray {
     }
 
     // ----------------------------------------------------------
-    // Main Method: Test all three approaches
+    // Main method: Tests all three approaches
     // ----------------------------------------------------------
     public static void main(String[] args) {
         int[] original = {1, 1, 2, 2, 3, 4, 4, 5};
