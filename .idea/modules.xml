@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/3. Collections/1. List/1. List.iml" filepath="$PROJECT_DIR$/3. Collections/1. List/1. List.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3. Collections/3. Collections.iml" filepath="$PROJECT_DIR$/3. Collections/3. Collections.iml" />
       <module fileurl="file://$PROJECT_DIR$/Arrays.iml" filepath="$PROJECT_DIR$/Arrays.iml" />
       <module fileurl="file://$PROJECT_DIR$/Basics/Basics.iml" filepath="$PROJECT_DIR$/Basics/Basics.iml" />
       <module fileurl="file://$PROJECT_DIR$/Arrays/Easy/Easy.iml" filepath="$PROJECT_DIR$/Arrays/Easy/Easy.iml" />
